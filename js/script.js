@@ -1,135 +1,38 @@
-let navbar = document.querySelector('.header .navbar')
+// Modal Image Gallery
+function onClick(element) {
+   document.getElementById("img01").src = element.src;
+   document.getElementById("modal01").style.display = "block";
+   var captionText = document.getElementById("caption");
+   captionText.innerHTML = element.alt;
+ }
+ 
+ 
+ // Toggle between showing and hiding the sidebar when clicking the menu icon
+ var mySidebar = document.getElementById("mySidebar");
+ 
+ function w3_open() {
+   if (mySidebar.style.display === 'block') {
+     mySidebar.style.display = 'none';
+   } else {
+     mySidebar.style.display = 'block';
+   }
+ }
+ 
+ // Close the sidebar with the close button
+ function w3_close() {
+     mySidebar.style.display = "none";
+ }
+ var slideIndex = 0;
+showSlides();
 
-document.querySelector('#menu-btn').onclick = () =>{
-  navbar.classList.add('active');
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
 }
-
-document.querySelector('#close-navbar').onclick = () =>{
-  navbar.classList.remove('active');
-};
-
-let registerBtn = document.querySelector('.account-form .register-btn');
-let loginBtn = document.querySelector('.account-form .login-btn');
-
-registerBtn.onclick = () =>{
-  registerBtn.classList.add('active');
-  loginBtn.classList.remove('active');
-  document.querySelector('.account-form .login-form').classList.remove('active');
-  document.querySelector('.account-form .register-form').classList.add('active');
-};
-
-loginBtn.onclick = () =>{
-  registerBtn.classList.remove('active');
-  loginBtn.classList.add('active');
-  document.querySelector('.account-form .login-form').classList.add('active');
-  document.querySelector('.account-form .register-form').classList.remove('active');
-};
-
-let accountForm = document.querySelector('.account-form')
-
-document.querySelector('#account-btn').onclick = () =>{
-  accountForm.classList.add('active');
-}
-
-document.querySelector('#close-form').onclick = () =>{
-  accountForm.classList.remove('active');
-};
-
-var swiper = new Swiper(".home-slider", {
-  pagination: {
-    el: ".swiper-pagination",
-    clickable:true,
-  },
-  loop:true,
-  grabCursor:true,
-});
-
-var swiper = new Swiper(".home-courses-slider", {
-  loop:true,
-  grabCursor:true,
-  spaceBetween: 20,
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    991: {
-      slidesPerView: 3,
-    },
-  },
-});
-
-var swiper = new Swiper(".teachers-slider", {
-  loop:true,
-  grabCursor:true,
-  spaceBetween: 20,
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    991: {
-      slidesPerView: 3,
-    },
-  },
-});
-
-var swiper = new Swiper(".reviews-slider", {
-  loop:true,
-  grabCursor:true,
-  spaceBetween: 20,
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    991: {
-      slidesPerView: 3,
-    },
-  },
-});
-
-var swiper = new Swiper(".logo-slider", {
-  loop:true,
-  grabCursor:true,
-  spaceBetween: 20,
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    450: {
-      slidesPerView: 2,
-    },
-    768: {
-      slidesPerView: 3,
-    },
-    991: {
-      slidesPerView: 4,
-    },
-    1200: {
-      slidesPerView: 5,
-    },
-  },
-});
-
-let accordion = document.querySelectorAll('.faq .accordion-container .accordion');
-
-accordion.forEach(acco =>{
-  acco.onclick = () =>{
-    accordion.forEach(dion => dion.classList.remove('active'));
-    acco.classList.toggle('active');
-  };
-});
-
-document.querySelector('.load-more .btn').onclick = () =>{
-  document.querySelectorAll('.courses .box-container .hide').forEach(show =>{
-    show.style.display = 'block';
-  });
-  document.querySelector('.load-more .btn').style.display = 'none';
-};
